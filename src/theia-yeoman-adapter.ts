@@ -43,19 +43,22 @@ export class TheiaYeomanAdapter {
                 // question mode
                 this.askQuestion(question, quickPickOption, replies, resolve, reject, callback);
             } else {
+                const defaultValue = 'boolean' === typeof question.default ? 'y' : question.default;
+
                 // input box
                 const inputOption: theia.InputBoxOptions = {
                     prompt: question.message,
                     placeHolder: question.name,
                     ignoreFocusOut: false,
                     password: false,
-                    value: question.default
+                    value: defaultValue
                 };
+
                 theia.window.showInputBox(inputOption).then((s: string | undefined) => {
                     if (typeof s !== 'undefined') {
                         replies[question.name] = s;
                     } else {
-                        replies[question.name] = question.default;
+                        replies[question.name] = defaultValue;
                     }
                     callback(replies);
                     resolve(replies);
