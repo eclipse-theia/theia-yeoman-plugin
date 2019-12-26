@@ -24,7 +24,7 @@
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
     "format-code": "tsfmt -r",
-    "build": "yarn run format-code && yarn run compile && yarn run tslint-fix && theia-plugin pack",
+    "build": "yarn run format-code && yarn run compile && yarn run tslint-fix && theia:plugin pack",
     "compile": "tsc",
     "watch": "tsc -watch",
     "tslint-fix": "tslint --fix --project .",
