@@ -1,5 +1,5 @@
 /*********************************************************************
-* Copyright (c) 2018 Red Hat, Inc.
+* Copyright (c) 2019 Red Hat, Inc.
 *
 * This program and the accompanying materials are made
 * available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,10 @@ import * as yeoman from 'yeoman-environment';
 
 const proc = process;
 
+/**
+ * Picks from the list and launches a Yeoman generator.
+ * Provides the generator methods to log and display the prompt.
+ */
 export class YeomanProcess {
 
     protected log: any;

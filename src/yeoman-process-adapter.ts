@@ -1,5 +1,5 @@
 /*********************************************************************
-* Copyright (c) 2018 Red Hat, Inc.
+* Copyright (c) 2019 Red Hat, Inc.
 *
 * This program and the accompanying materials are made
 * available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,11 @@ import { ChildProcess } from 'child_process';
 const path = require('path');
 const fork = require('child_process').fork;
 
+/**
+ * Launches a Yeoman Generator in separate node intance.
+ * Asks Theia to display prompts and notification messages by request from Yeoman Generator.
+ * Prints Yeoman generator logs to dedicated Theia view.
+ */
 export class YeomanProcessAdapter {
 
     private outputChannel: theia.OutputChannel;
@@ -52,8 +57,7 @@ export class YeomanProcessAdapter {
         const currentWorkspace = workspaceFolders[0];
 
         // start Yeoman generator in separate node instance
-        const scriptPath = this.extensionPath + '/lib/yeoman-process.js';
-        const process = path.resolve(scriptPath);
+        const process = path.resolve(this.extensionPath, 'lib/yeoman-process.js');
 
         const params: any[] = [];
         const options = {
