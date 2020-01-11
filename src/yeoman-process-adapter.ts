@@ -70,11 +70,17 @@ export class YeomanProcessAdapter {
         child.on('message', this.onMessage);
 
         child.stdout.on('data', (data: any) => {
-            console.log(`## stdout: ${data}`);
+            this.processOutput({
+                prefix: '[INFO]',
+                message: data as string
+            });
         });
 
         child.stderr.on('data', (data: any) => {
-            console.log(`## stderr: ${data}`);
+            this.processOutput({
+                prefix: '[WARN]',
+                message: data as string
+            });
         });
 
         this.childProcess = child;
